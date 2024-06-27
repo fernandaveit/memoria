@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/output.css">
+
+</head>
+
+<body class="bg-[url('../img/background.png')] bg-no-repeat md:bg-cover bg-top bg-[#0F0F0F] relative">
+    <div class="px-16 py-14 flex gap-10 flex-col">
+        <h1 class="font-titulo text-center text-3xl text-[#ECC839] text-shadow shadow-[#FF5B00] tracking-wider">Jogo da Memória</h1>
+
+        <!-- Select de nível -->
+        <select name="select" id="select" class="border border-cor-mostarda bg-vermelho-escuro has-[:checked]:text-cor-mostarda py-2 px-3 md:mx-28 xl:mx-36 rounded hover:cursor-pointer">
+            <option class="text-cor-mostarda" value="facil">Nível fácil</option>
+            <option class="text-cor-mostarda" value="dificil">Nível difícil</option>
+        </select>
+    </div>
+
+    <!-- Modal exibido ao finalizar o jogo -->
+    <div class="modal z-20 bg-cinza rounded px-7 py-6 md:mx-10 w-9/12 md:w-4/5 md:max-w-lg hidden fixed left-1/2 -translate-x-1/2">
+        <div class="bg-cinza content flex flex-col gap-7">
+            <img class="object-none absolute -top-10 -right-10" src="./img/teia.png">
+            <h2 class="font-titulo text-center text-3xl text-[#ECC839] text-shadow shadow-[#FF5B00] tracking-wider">Buuh!!</h2>
+            <p class="text-sm text-white text-center">Parabéns, você terminou esse jogo da memória. Experimente jogar uma outra dificuldade ou jogue na mesma novamente.</p>
+            <button class="text-white bg-vermelho-escuro rounded border border-cor-mostarda w-full py-1.5" onclick="reiniciar()">JOGAR NOVAMENTE</button>
+        </div>
+    </div>
+
+    <!-- Camada escura para dar foco ao modal de jogo finalizado -->    
+    <div class="overlay hidden fixed top-0 left-0 w-full bg-black/75 h-full z-10"></div>
+
+    <!-- Cartas --> 
+    <div class="cards z-0 px-7 gap-5 grid grid-cols-3 justify-items-center md:grid-cols-5 md:px-14 xl:grid-cols-6 xl:px-20">
+        <div class="hover:cursor-pointer bg-cinza rounded h-28 md:h-44 w-full flex items-center justify-center" onclick="virar(id)" id="0"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer bg-cinza rounded h-28 md:h-44 w-full flex items-center justify-center" onclick="virar(id)" id="1"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer bg-cinza rounded h-28 md:h-44 w-full flex items-center justify-center" onclick="virar(id)" id="2"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer bg-cinza rounded h-28 md:h-44 w-full flex items-center justify-center" onclick="virar(id)" id="3"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer bg-cinza rounded h-28 md:h-44 w-full flex items-center justify-center" onclick="virar(id)" id="4"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer bg-cinza rounded h-28 md:h-44 w-full flex items-center justify-center" onclick="virar(id)" id="5"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer bg-cinza rounded h-28 md:h-44 w-full flex items-center justify-center" onclick="virar(id)" id="6"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer bg-cinza rounded h-28 md:h-44 w-full flex items-center justify-center" onclick="virar(id)" id="7"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer bg-cinza rounded h-28 md:h-44 w-full flex items-center justify-center" onclick="virar(id)" id="8"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer bg-cinza rounded h-28 md:h-44 w-full flex items-center justify-center" onclick="virar(id)" id="9"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer dificil bg-cinza rounded h-28 md:h-44 w-full hidden items-center justify-center" onclick="virar(id)" id="10"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer dificil bg-cinza rounded h-28 md:h-44 w-full hidden items-center justify-center" onclick="virar(id)" id="11"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer dificil bg-cinza rounded h-28 md:h-44 w-full hidden items-center justify-center" onclick="virar(id)" id="12"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer dificil bg-cinza rounded h-28 md:h-44 w-full hidden items-center justify-center" onclick="virar(id)" id="13"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer dificil bg-cinza rounded h-28 md:h-44 w-full hidden items-center justify-center" onclick="virar(id)" id="14"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer dificil bg-cinza rounded h-28 md:h-44 w-full hidden items-center justify-center" onclick="virar(id)" id="15"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer dificil bg-cinza rounded h-28 md:h-44 w-full hidden items-center justify-center" onclick="virar(id)" id="16"><img class="mx-auto" src="./img/verso.png"></div>
+        <div class="hover:cursor-pointer dificil bg-cinza rounded h-28 md:h-44 w-full hidden items-center justify-center" onclick="virar(id)" id="17"><img class="mx-auto" src="./img/verso.png"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
